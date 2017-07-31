@@ -37,9 +37,10 @@
             this.rbtncedula = new System.Windows.Forms.RadioButton();
             this.txtresultado = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.btnbuscar = new System.Windows.Forms.Button();
             this.btncrear = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnsalir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvempleado)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,11 +49,12 @@
             this.dgvempleado.AllowUserToAddRows = false;
             this.dgvempleado.AllowUserToDeleteRows = false;
             this.dgvempleado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvempleado.Location = new System.Drawing.Point(8, 71);
+            this.dgvempleado.Location = new System.Drawing.Point(67, 70);
             this.dgvempleado.Name = "dgvempleado";
             this.dgvempleado.ReadOnly = true;
-            this.dgvempleado.Size = new System.Drawing.Size(757, 441);
+            this.dgvempleado.Size = new System.Drawing.Size(743, 441);
             this.dgvempleado.TabIndex = 0;
+            this.dgvempleado.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvempleado_CellContentClick);
             this.dgvempleado.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvempleado_CellMouseClick);
             // 
             // rbtnid
@@ -112,6 +114,18 @@
             this.timer1.Interval = 3000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(618, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(61, 39);
+            this.button1.TabIndex = 9;
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // btnbuscar
             // 
             this.btnbuscar.Enabled = false;
@@ -142,24 +156,27 @@
             this.btncrear.UseVisualStyleBackColor = true;
             this.btncrear.Click += new System.EventHandler(this.btncrear_Click);
             // 
-            // button1
+            // btnsalir
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(618, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(61, 39);
-            this.button1.TabIndex = 9;
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnsalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnsalir.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.btnsalir.Image = ((System.Drawing.Image)(resources.GetObject("btnsalir.Image")));
+            this.btnsalir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnsalir.Location = new System.Drawing.Point(771, 7);
+            this.btnsalir.Name = "btnsalir";
+            this.btnsalir.Size = new System.Drawing.Size(84, 40);
+            this.btnsalir.TabIndex = 20;
+            this.btnsalir.Text = "       Salir";
+            this.btnsalir.UseVisualStyleBackColor = true;
+            this.btnsalir.Click += new System.EventHandler(this.btnsalir_Click);
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(772, 524);
+            this.ClientSize = new System.Drawing.Size(864, 559);
+            this.Controls.Add(this.btnsalir);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnbuscar);
             this.Controls.Add(this.txtresultado);
@@ -172,6 +189,7 @@
             this.MaximizeBox = false;
             this.Name = "Form2";
             this.Text = "Busqueda Empleados";
+            this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvempleado)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -190,5 +208,6 @@
         private System.Windows.Forms.Button btnbuscar;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnsalir;
     }
 }

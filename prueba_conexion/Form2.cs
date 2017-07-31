@@ -108,6 +108,22 @@ namespace prueba_conexion
             }
 
         }
+
+        private void dgvempleado_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnsalir_Click(object sender, EventArgs e)
+        {
+           this.Close();
+            
+        }
     }
     }
     

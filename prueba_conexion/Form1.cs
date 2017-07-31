@@ -95,9 +95,7 @@ namespace prueba_conexion
                 else {
 
                   sql = "UPDATE empleados SET nombre='"+ txtnombre.Text + "', apellido='" + txtapellido.Text + "', cedula='" + txtcedula.Text + "' , sexo= '" + txtsexo.Text + "', fecha_nacimiento='" + txtfechanacimiento.Text + "', edad='" + txtedad.Text + "', fecha_ingreso= '" + txtfechaingreso.Text + "', antiguedad='" + txtantiguedad.Text + "', salario='" + txtsalario.Text + "' where  id_empleado="+codigo;
-                  
-
-
+ 
                 }
                 x.sendData(sql).ToString();
                 this.Close();
@@ -123,8 +121,8 @@ namespace prueba_conexion
         {
             this.Close();
         }
-       
-        private void btnborrar_Click_1(object sender, EventArgs e)
+
+        public void btnborrar_Click_1(object sender, EventArgs e)
         {
             DialogResult limpiar = MessageBox.Show("Seguro que desea eliminar Empleado", "ADVERTENCIA", MessageBoxButtons.YesNo);
             if (limpiar == DialogResult.Yes)

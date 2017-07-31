@@ -156,7 +156,7 @@
             this.txtfechanacimiento.Name = "txtfechanacimiento";
             this.txtfechanacimiento.Size = new System.Drawing.Size(203, 21);
             this.txtfechanacimiento.TabIndex = 5;
-            // 
+             // 
             // txtsexo
             // 
             this.txtsexo.Location = new System.Drawing.Point(149, 105);
