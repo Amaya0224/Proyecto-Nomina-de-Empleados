@@ -1,6 +1,19 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Data.SQLite;
+using CrystalDecisions;
+using CrystalDecisions.Shared;
+using CrystalDecisions.ReportSource;
+using CrystalDecisions.CrystalReports.Engine;
+using System.IO;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Collections.Generic;
+using System.Text;
+using System.Xml;
+
 
 namespace prueba_conexion
 {
@@ -150,6 +163,45 @@ namespace prueba_conexion
             }
             txtTotalDeducciones.Text = total_deducciones.ToString();
             txtTotalNomina.Text = total_nomina.ToString();
+        }
+
+        private void dgvbusquedanomina_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            ConexionDB x = new ConexionDB();
+            DataSet ds = new DataSet();
+            //DataSet dss = new DataSet();
+
+            DataTable dt = x.selectData("select a.id_empleado, a.nombre as Nombre, a.apellido as Apellido, a.cedula as Cedula, b.nombre_cargo as Cargo, a.salario as Sueldo, (a.salario*0.12) as ISR, (a.salario * 0.04) as SS, (a.salario * 0.02) as Ahorros, ((a.salario * 0.12) + (a.salario * 0.04) + (a.salario * 0.02)) as Total_Deducciones, (a.salario - ((a.salario * 0.12) + (a.salario * 0.04) + (a.salario * 0.02))) as Sueldo_Neto from empleados a inner join cargos b on a.id_cargo = b.id_cargo order by a.nombre asc");
+            ds.Tables.Add(dt);
+            ds.Tables[0].TableName = "empleados, cargos";
+            ds.WriteXml(@"C:\sistemas\Reportes\nomina.xml");
+
+
+
+            /*
+           DataTable dt = x.selectData("Select empleados.id_empleado as ID, empleados.nombre as Nombre, empleados.apellido as Apellido, empleados.cedula as Cédula, cargos.nombre_cargo as Cargo, empleados.salario as Sueldo, (empleados.salario*0.12) ISR, (empleados.salario*0.04) SS, (empleados.salario*0.02) Ahorros, ((empleados.salario*0.12)+(empleados.salario*0.04)+(empleados.salario*0.02)) 'Total Deduc.', ((empleados.salario)-((empleados.salario*0.12)+(empleados.salario*0.04)+(empleados.salario*0.02))) 'Sueldo Neto' from empleados left join cargos on empleados.id_cargo=cargos.id_cargo order by empleados.id_empleado");
+           ds.Tables.Add(dt);
+           ds.Tables[0].TableName = "empleados, cargos";      
+           ds.WriteXml(@"C:\sistemas\Reportes\nomina.xml");
+
+
+           DataTable dtt = x.selectData("Select cabecera_nomina.num_nomina as Numero, cabecera_nomina.tipo_nomina as Tipo, cabecera_nomina.status as Status, cabecera_nomina.fecha_inicial as 'Fecha Inicial', cabecera_nomina.fecha_final as 'Fecha Final', (Select sum(detalle_nomina.sueldo_neto + detalle_nomina.total_deducciones) from detalle_nomina where num_nomina=cabecera_nomina.num_nomina) as 'Sueldo Bruto', (Select sum(detalle_nomina.total_deducciones) from detalle_nomina where num_nomina=cabecera_nomina.num_nomina) as 'Total Deducciones', (Select sum(detalle_nomina.sueldo_neto) from detalle_nomina where num_nomina=cabecera_nomina.num_nomina) as 'Total Nomina' from cabecera_nomina");
+           dss.Tables.Add(dtt);
+           dss.Tables[0].TableName = "cabecera_nomina, detalle_nomina";
+           dss.WriteXml(@"C:\sistemas\Reportes\cabecera.xml");
+           */
+
+            VisorReportes f = new VisorReportes();
+            f.Show();
+
+
+            //"Select empleados.id_empleado as ID, empleados.nombre as Nombre, empleados.apellido as Apellido, empleados.cedula as Cédula, cargos.nombre_cargo as Cargo, empleados.salario as Sueldo, (empleados.salario*0.12) ISR, (empleados.salario*0.04) SS, (empleados.salario*0.02) Ahorros, ((empleados.salario*0.12)+(empleados.salario*0.04)+(empleados.salario*0.02)) 'Total Deduc.', ((empleados.salario)-((empleados.salario*0.12)+(empleados.salario*0.04)+(empleados.salario*0.02))) 'Sueldo Neto' from empleados left join cargos on empleados.id_cargo=cargos.id_cargo order by empleados.id_empleado";
         }
     }
 }

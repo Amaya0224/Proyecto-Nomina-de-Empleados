@@ -28,9 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // CRUD_Maestro_Detalle_Nomina_detalle_nomina
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "CRUD_Maestro_Detalle_Nomina_detalle_nomina";
             this.Text = "CRUD_Maestro_Detalle_Nomina_detalle_nomina";
+            this.Load += new System.EventHandler(this.CRUD_Maestro_Detalle_Nomina_detalle_nomina_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
