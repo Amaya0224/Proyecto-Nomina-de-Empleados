@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace prueba_conexion
+namespace WindowsFormsApp1
 {
     static class Program
     {
@@ -13,7 +16,7 @@ namespace prueba_conexion
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BusquedaEmpleado());
+            Application.Run(new Form1());
         }
     }
 }

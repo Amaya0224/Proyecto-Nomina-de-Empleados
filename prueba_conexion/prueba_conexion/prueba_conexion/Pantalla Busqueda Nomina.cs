@@ -1,19 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Data.SQLite;
-using CrystalDecisions;
-using CrystalDecisions.Shared;
-using CrystalDecisions.ReportSource;
-using CrystalDecisions.CrystalReports.Engine;
-using System.IO;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml;
-using prueba_conexion.Visores_de_Reportes;
 
 namespace prueba_conexion
 {
@@ -22,14 +9,15 @@ namespace prueba_conexion
         
         public int codigo = 0;
         public string s = "";
-
         //Conexion a la Base de Datos//
         ConexionDB x = new ConexionDB();
         
+
         public Pantalla_Busqueda_Nomina()
         {
             InitializeComponent();
             cargar_datos();
+
         }
 
         //Cargar datos al DataGriedView desde las tablas cabecera_nomina y detalle_nomina de la base de datos//
@@ -52,6 +40,7 @@ namespace prueba_conexion
             res = x.selectData(sql);
             dgvMaestroNomina.DataSource = res;
             calcular();
+
         }
 
         // Timer para cargar los datos luego de hacer una busqueda// 
@@ -62,24 +51,30 @@ namespace prueba_conexion
 
         private void txtresultado_TextChanged(object sender, EventArgs e)
         {
+
             string valor = txtresultado.Text;
 
             if (valor.Length != 0)
             {
+
                 btnbuscar.Enabled = true;
                 timer1.Enabled = false;
+
             }
             else
             {
                 btnbuscar.Enabled = false;
                 timer1.Enabled = true;
             }
+
         }
+
         //Salir del formulario//
         private void btnsalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
         //Busqueda de la Nómina por Número, Fecha de Inicio y Status usando el boton buscar//
         private void btnbuscar_Click(object sender, EventArgs e)
         {
@@ -91,7 +86,9 @@ namespace prueba_conexion
                 res = x.selectData(sql);
                 dgvbusquedanomina.DataSource = res;
                 txtresultado.Clear();
-             }
+                
+
+            }
             if (rbtnfechainicio.Checked == true)
             {
                 System.Data.DataTable res = new System.Data.DataTable();
@@ -100,7 +97,9 @@ namespace prueba_conexion
                 res = x.selectData(sql);
                 dgvbusquedanomina.DataSource = res;
                 txtresultado.Clear();
-          }
+                
+
+            }
             if (rbtnstatus.Checked == true)
             {
                 System.Data.DataTable res = new System.Data.DataTable();
@@ -109,10 +108,12 @@ namespace prueba_conexion
                 res = x.selectData(sql);
                 dgvbusquedanomina.DataSource = res;
                 txtresultado.Clear();
+                
             }
         }
         
-       //Crear una Nómina nueva//
+ 
+      //Crear una Nómina nueva//
       private void btncrear_Click(object sender, EventArgs e)
         {
             Detalle_de_Nomina r = new Detalle_de_Nomina();
@@ -123,7 +124,8 @@ namespace prueba_conexion
         //Cargar datos en el DataGriedView Maestro Detalle dando click en DataGriedView Busqueda de Nomina//
         private void dgvbusquedanomina_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            cargar_datos1();       
+            cargar_datos1();
+            
         }
         //Cargar datos en el DataGriedView Detalle Nomina dando doble click en DataGriedView Busqueda de Nomina//
         private void dgvbusquedanomina_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -133,7 +135,6 @@ namespace prueba_conexion
             r.s = dgvbusquedanomina.CurrentRow.Cells["Status"].Value.ToString();
             r.Show();
         }
-        //Calcular totales de la nomina (Total de Deducciones y Total General de la Nomina)
         private void calcular()
         {
             int total_deducciones = 0;
@@ -141,35 +142,14 @@ namespace prueba_conexion
             for (int a = 0; a < dgvMaestroNomina.Rows.Count; a++)
 
             {
+
+
                 total_deducciones += Convert.ToInt32(dgvMaestroNomina.Rows[a].Cells["Total Deduc."].Value.ToString());
                 total_nomina += Convert.ToInt32(dgvMaestroNomina.Rows[a].Cells["Sueldo Neto"].Value.ToString());
+
             }
             txtTotalDeducciones.Text = total_deducciones.ToString();
             txtTotalNomina.Text = total_nomina.ToString();
-        }
-        //Generar archivo XML con información de la base de datos y guardarlo para crear el reporte de nomina
-        private void button1_Click(object sender, EventArgs e)
-        {      
-           ConexionDB x = new ConexionDB();
-
-            DataSet ds = new DataSet();
-     
-            DataTable dt= x.selectData("Select cabecera_nomina.num_nomina as Numero, cabecera_nomina.tipo_nomina as Tipo, cabecera_nomina.status as Status, cabecera_nomina.fecha_inicial as 'Fecha Inicial', cabecera_nomina.fecha_final as 'Fecha Final', (Select sum(detalle_nomina.sueldo_neto + detalle_nomina.total_deducciones) from detalle_nomina where num_nomina=cabecera_nomina.num_nomina) as 'Sueldo Bruto', (Select sum(detalle_nomina.total_deducciones) from detalle_nomina where num_nomina=cabecera_nomina.num_nomina) as 'Total Deducciones', (Select sum(detalle_nomina.sueldo_neto) from detalle_nomina where num_nomina=cabecera_nomina.num_nomina) as 'Total Nomina' from cabecera_nomina where cabecera_nomina.num_nomina");
-            DataTable dtt= x.selectData("Select empleados.id_empleado as ID, empleados.nombre as Nombre, empleados.apellido as Apellido, empleados.cedula as Cédula, cargos.nombre_cargo as Cargo, empleados.salario as Sueldo, (empleados.salario*0.12) ISR, (empleados.salario*0.04) SS, (empleados.salario*0.02) Ahorros, ((empleados.salario*0.12)+(empleados.salario*0.04)+(empleados.salario*0.02)) 'Total Deduc.', ((empleados.salario)-((empleados.salario*0.12)+(empleados.salario*0.04)+(empleados.salario*0.02))) 'Sueldo Neto' from empleados left join cargos on empleados.id_cargo=cargos.id_cargo order by empleados.id_empleado");
-            
-            ds.Tables.Add(dt);
-            ds.Tables.Add(dtt);       
-
-            ds.Tables[0].TableName = "cabecera_nomina, detalle_nomina";
-            ds.Tables[0].TableName = "empleados, cargos";
-           
-            ds.WriteXml(@"C:\sistemas\Reportes\cabecera_nomina_detalle_Nomina.xml");
-            ds.WriteXml(@"C:\sistemas\Reportes\empleados_cargos.xml");
-            MessageBox.Show("Estoy aqui1");
-            VisorReportes f = new VisorReportes();
-            f.Show();
-                   
-
         }
     }
 }

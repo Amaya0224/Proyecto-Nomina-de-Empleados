@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Data.SQLite;
-using CrystalDecisions;
-using CrystalDecisions.Shared;
-using CrystalDecisions.ReportSource;
-using CrystalDecisions.CrystalReports.Engine;
 
 namespace prueba_conexion
 {
@@ -59,8 +55,6 @@ namespace prueba_conexion
             emple.txtfechanacimiento.Enabled = false;
             emple.txtfechaingreso.Enabled = false;
             emple.txtedad.Enabled = false;
-           
-            
             
            }
         //Condicion en el Load del DataGridView Detalle Nomina donde indico que si una nomina esta cerrada solo puedo visualizarla// 

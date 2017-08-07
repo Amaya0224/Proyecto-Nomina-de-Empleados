@@ -37,7 +37,7 @@
             this.dgvbusquedanomina = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnsalir = new System.Windows.Forms.Button();
-            this.btnprint = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnbuscar = new System.Windows.Forms.Button();
             this.btncrear = new System.Windows.Forms.Button();
             this.dgvMaestroNomina = new System.Windows.Forms.DataGridView();
@@ -123,18 +123,17 @@
             this.btnsalir.UseVisualStyleBackColor = true;
             this.btnsalir.Click += new System.EventHandler(this.btnsalir_Click);
             // 
-            // btnprint
+            // button1
             // 
-            this.btnprint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnprint.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.btnprint.Image = ((System.Drawing.Image)(resources.GetObject("btnprint.Image")));
-            this.btnprint.Location = new System.Drawing.Point(635, 14);
-            this.btnprint.Name = "btnprint";
-            this.btnprint.Size = new System.Drawing.Size(61, 39);
-            this.btnprint.TabIndex = 18;
-            this.btnprint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnprint.UseVisualStyleBackColor = true;
-            this.btnprint.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(635, 14);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(61, 39);
+            this.button1.TabIndex = 18;
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // btnbuscar
             // 
@@ -234,7 +233,7 @@
             this.Controls.Add(this.dgvMaestroNomina);
             this.Controls.Add(this.btncrear);
             this.Controls.Add(this.btnsalir);
-            this.Controls.Add(this.btnprint);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnbuscar);
             this.Controls.Add(this.txtresultado);
             this.Controls.Add(this.rbtnstatus);
@@ -243,7 +242,6 @@
             this.Controls.Add(this.dgvbusquedanomina);
             this.Name = "Pantalla_Busqueda_Nomina";
             this.Text = "Pantalla_Busqueda_Nomina y CRUD Maestro Detalle";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dgvbusquedanomina)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaestroNomina)).EndInit();
             this.ResumeLayout(false);
@@ -253,7 +251,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnprint;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnbuscar;
         private System.Windows.Forms.TextBox txtresultado;
         private System.Windows.Forms.RadioButton rbtnstatus;

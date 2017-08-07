@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System;
 using System.Windows.Forms;
 using System.Data.SQLite;
-using CrystalDecisions;
-using CrystalDecisions.Shared;
-using CrystalDecisions.ReportSource;
-using CrystalDecisions.CrystalReports.Engine;
 
 namespace prueba_conexion
 {

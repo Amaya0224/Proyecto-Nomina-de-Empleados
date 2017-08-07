@@ -13,7 +13,7 @@ namespace prueba_conexion
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BusquedaEmpleado());
+            Application.Run(new Form2());
         }
     }
 }
